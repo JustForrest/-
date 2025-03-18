@@ -3,7 +3,7 @@ require('dotenv').config();
 module.exports = {
   schema: "./schema.js",
   out: "./migrations",
-  driver: "postgresql", // Changed from "dialect" to "driver"
+  dialect: "postgresql", // Should be "dialect" for drizzle-kit
   dbCredentials: {
     connectionString: process.env.DATABASE_URL,
     ssl: true
