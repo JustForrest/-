@@ -1,1 +1,24 @@
-/.DS_Store
+# macOS system files
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+
+# Environment variables and secrets
+.env
+.env.local
+
+# Logs
+*.log
+
+# Appsmith temporary files
+appsmith-logs/
+
+# Database
+*.dump
+*.bak
