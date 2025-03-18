@@ -18,6 +18,11 @@ docker.env
 # Logs
 *.log
 logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
 
 # Database files
 *.db
@@ -25,6 +30,25 @@ logs/
 *.lock.db
 *.trace.db
 *.wt
+
+# Node.js related
+node_modules/
+.npm/
+.node_repl_history
+.yarn-integrity
+.eslintcache
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+coverage/
+*.tsbuildinfo
+
+# Build outputs
+dist/
+build/
+out/
 
 # Appsmith stack specific
 # Data directories (databases, caches, etc.)
