@@ -4,6 +4,9 @@ const { drizzle } = require('drizzle-orm/postgres-js');
 const postgres = require('postgres');
 const cors = require('@fastify/cors');
 
+// Import your schema tables
+const { company, office, agent, property, customFieldsDefinition, media } = require('./schema');
+
 // Setup CORS to allow Appsmith to connect
 fastify.register(cors, {
   origin: true, // Adjust this for production
@@ -46,6 +49,43 @@ fastify.get('/api/db-test', async (request, reply) => {
   } catch (error) {
     fastify.log.error(error);
     reply.code(500).send({ error: 'Database connection failed', message: error.message });
+  }
+});
+
+// Add after your other endpoints
+fastify.get('/api/schema-test', async (request, reply) => {
+  try {
+    // Assuming you have a schema file with tables defined
+    // Replace 'yourTable' with an actual table from your schema
+    const results = await db.select().from(yourTable).limit(5);
+    return { 
+      status: 'success', 
+      message: 'Schema is working properly',
+      data: results
+    };
+  } catch (error) {
+    fastify.log.error(error);
+    return { 
+      status: 'error', 
+      message: error.message 
+    };
+  }
+});
+
+// Add after your other endpoints
+fastify.get('/api/schema-info', async (request, reply) => {
+  try {
+    // Get table information directly from PostgreSQL
+    const tableInfo = await client`
+      SELECT table_name, column_name, data_type 
+      FROM information_schema.columns
+      WHERE table_schema = 'public'
+      ORDER BY table_name, ordinal_position
+    `;
+    return { tables: tableInfo };
+  } catch (error) {
+    fastify.log.error(error);
+    reply.code(500).send({ error: 'Schema introspection failed' });
   }
 });
 
