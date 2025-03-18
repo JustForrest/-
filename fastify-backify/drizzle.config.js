@@ -3,7 +3,7 @@ require('dotenv').config();
 module.exports = {
   schema: "./schema.js",
   out: "./migrations",
-  dialect: "postgresql", // Changed from "pg" to "postgresql"
+  driver: "postgresql", // Changed from "dialect" to "driver"
   dbCredentials: {
     connectionString: process.env.DATABASE_URL,
     ssl: true
