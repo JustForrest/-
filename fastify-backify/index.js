@@ -38,6 +38,17 @@ fastify.get('/api/data', async (request, reply) => {
   }
 });
 
+// Add after your other endpoints
+fastify.get('/api/db-test', async (request, reply) => {
+  try {
+    const result = await client`SELECT NOW() as time, current_user as user`;
+    return { status: 'connected', result };
+  } catch (error) {
+    fastify.log.error(error);
+    reply.code(500).send({ error: 'Database connection failed', message: error.message });
+  }
+});
+
 // Start server
 const start = async () => {
   try {
