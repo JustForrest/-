@@ -12,9 +12,44 @@
 # Environment variables and secrets
 .env
 .env.local
+*.env
+docker.env
 
 # Logs
 *.log
+logs/
+
+# Database files
+*.db
+*.mv.db
+*.lock.db
+*.trace.db
+*.wt
+
+# Appsmith stack specific
+# Data directories (databases, caches, etc.)
+appsmith/stacks/data/
+appsmith/stacks/data/mongodb/
+appsmith/stacks/data/postgres/
+appsmith/stacks/data/redis/
+appsmith/stacks/data/keycloak/
+appsmith/stacks/data/backup/
+appsmith/stacks/data/restore/
+appsmith/stacks/data/temporal/
+appsmith/stacks/data/caddy/
+
+# Log directories
+appsmith/stacks/logs/
+
+# Monitoring data
+appsmith/stacks/monitoring/
+
+# UUID and instance files
+**/instance.uuid
+**/last_clean.json
+
+# Temporary files
+**/locks/
 
 # Appsmith temporary files
 appsmith-logs/
