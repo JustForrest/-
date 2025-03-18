@@ -55,9 +55,8 @@ fastify.get('/api/db-test', async (request, reply) => {
 // Add after your other endpoints
 fastify.get('/api/schema-test', async (request, reply) => {
   try {
-    // Assuming you have a schema file with tables defined
-    // Replace 'yourTable' with an actual table from your schema
-    const results = await db.select().from(yourTable).limit(5);
+    // Using the company table from your schema
+    const results = await db.select().from(company).limit(5);
     return { 
       status: 'success', 
       message: 'Schema is working properly',

@@ -1,7 +1,7 @@
-import { pgTable, uuid, varchar, integer, text, jsonb, timestamp, foreignKey } from 'drizzle-orm/pg-core';
+const { pgTable, uuid, varchar, integer, text, jsonb, timestamp, foreignKey } = require('drizzle-orm/pg-core');
 
 // Company Table
-export const company = pgTable('company', {
+const company = pgTable('company', {
   companyId: uuid('company_id').primaryKey().defaultRandom(),
   name: varchar('name', { length: 255 }).notNull(),
   address: text('address'),
@@ -12,7 +12,7 @@ export const company = pgTable('company', {
 });
 
 // Office Table
-export const office = pgTable('office', {
+const office = pgTable('office', {
   officeId: uuid('office_id').primaryKey().defaultRandom(),
   name: varchar('name', { length: 255 }).notNull(),
   address: text('address'),
@@ -24,7 +24,7 @@ export const office = pgTable('office', {
 });
 
 // Agent Table
-export const agent = pgTable('agent', {
+const agent = pgTable('agent', {
   agentId: uuid('agent_id').primaryKey().defaultRandom(),
   name: varchar('name', { length: 255 }).notNull(),
   email: varchar('email', { length: 255 }).notNull(),
@@ -37,7 +37,7 @@ export const agent = pgTable('agent', {
 });
 
 // Property Table
-export const property = pgTable('property', {
+const property = pgTable('property', {
   propertyId: uuid('property_id').primaryKey().defaultRandom(),
   address: text('address').notNull(),
   city: varchar('city', { length: 100 }).notNull(),
@@ -55,7 +55,7 @@ export const property = pgTable('property', {
 });
 
 // CustomFieldsDefinition Table
-export const customFieldsDefinition = pgTable('custom_fields_definition', {
+const customFieldsDefinition = pgTable('custom_fields_definition', {
   definitionId: uuid('definition_id').primaryKey().defaultRandom(),
   entityType: varchar('entity_type', { length: 50 }).notNull(), // e.g., 'property', 'agent'
   fieldName: varchar('field_name', { length: 100 }).notNull(),
@@ -68,7 +68,7 @@ export const customFieldsDefinition = pgTable('custom_fields_definition', {
 });
 
 // Media Table
-export const media = pgTable('media', {
+const media = pgTable('media', {
   mediaId: uuid('media_id').primaryKey().defaultRandom(),
   entityType: varchar('entity_type', { length: 50 }).notNull(), // e.g., 'property', 'agent'
   entityId: uuid('entity_id').notNull(), // References the UUID of the entity
@@ -77,3 +77,13 @@ export const media = pgTable('media', {
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
 });
+
+// Export all tables
+module.exports = {
+  company,
+  office,
+  agent,
+  property,
+  customFieldsDefinition,
+  media
+};
