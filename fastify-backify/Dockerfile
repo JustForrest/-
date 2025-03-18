@@ -16,5 +16,9 @@ COPY . .
 # Expose the port your Fastify app uses (default is 3000)
 EXPOSE 3000
 
+# Set environment variable defaults
+ENV PORT=3000
+# Don't set DATABASE_URL here - it should be injected at runtime
+
 # Command to start the application
 CMD ["node", "index.js"]
